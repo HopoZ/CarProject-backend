@@ -1,0 +1,17 @@
+server:
+  port: 8078
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://82.156.65.122:3306/safe_guard
+    username: root
+    password: 123456
+
+mybatis:
+  type-aliases-package: com.web.pojo
+  mapper-locations: classpath:mybatis/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    call-setters-on-nulls: true
+    map-underscore-to-camel-case: true # enable underscore to camel case

@@ -16,11 +16,13 @@ public class DataController {
     private DataService dataService;
 
     @GetMapping ("/getData")
+    @CrossOrigin(origins = "http://localhost:8080")
     public DetailedCarData getData(String carNumber) {
         return dataService.getData(carNumber);
     }
 
     @GetMapping ("/getCarData")
+    @CrossOrigin(origins = "http://localhost:8080")
     public List<CarDate> getCarData() {
         return dataService.getCarData();
     }

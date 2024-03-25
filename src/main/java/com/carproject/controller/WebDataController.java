@@ -11,6 +11,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/web")
 public class WebDataController {
 
     @Autowired
@@ -23,18 +24,25 @@ public class WebDataController {
      */
     @GetMapping ("/getDetailedData")
     @CrossOrigin(origins = "http://localhost:8080")
-    public DetailedCarData getDetailedData(String carNumber) {
+    public DetailedCarData getDetailedData(@RequestParam String carNumber) {
         return webDataService.getDetailedData(carNumber);
     }
 
+    /**
+     * 车辆信息列表
+     * @return 车辆信息
+     */
     @GetMapping ("/carDataList")
     @CrossOrigin(origins = "http://localhost:8080")
     public List<CarDate> getCarData() {
         return webDataService.carDataList();
     }
 
-
-    @GetMapping ("/registerCar ")
+    /**
+     * 注册车辆
+     * @param carNumber 车牌号
+     */
+    @PostMapping ("/registerCar ")
     @CrossOrigin(origins = "http://localhost:8080")
     public void registerCar(@RequestBody RegisterRequest carNumber) {
         webDataService.registerCar(carNumber);

@@ -7,12 +7,15 @@
     </insert>
 
     <select id="getDetailedData" resultType="com.carproject.pojo.DetailedCarData">
-        select * from safe_guard.law_data where car_number = #{carNumber}
+        SELECT *
+        FROM safe_guard.law_data
+        WHERE car_number = #{carNumber}
     </select>
 
 
     <select id="carDataList" resultType="com.carproject.pojo.CarDate">
-        select * from safe_guard.law_data
+        SELECT *
+        FROM safe_guard.law_data
     </select>
 
 </mapper>

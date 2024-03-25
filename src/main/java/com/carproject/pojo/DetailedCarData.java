@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class DetailedCarData {
+    String carNumber;
     String isTired;
     String isDrunk;
     String drunkDrivingPro;

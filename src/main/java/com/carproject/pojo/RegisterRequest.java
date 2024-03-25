@@ -3,9 +3,6 @@ package com.carproject.pojo;
 import lombok.Data;
 
 @Data
-public class CarDate {
+public class RegisterRequest {
     String carNumber;
-    String isTired;
-    String isDrunk;
-
 }

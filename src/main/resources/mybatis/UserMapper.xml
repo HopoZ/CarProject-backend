@@ -12,4 +12,11 @@
         WHERE car_number = #{carNumber}
           AND password = #{password}
     </select>
+    <select id="getUser" resultType="com.carproject.pojo.User">
+        SELECT *
+        FROM safe_guard.user
+        WHERE car_number = #{carNumber}
+    </select>
+
+
 </mapper>

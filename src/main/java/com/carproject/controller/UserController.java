@@ -4,15 +4,12 @@ import com.carproject.pojo.User;
 import com.carproject.service.UserService;
 import com.carproject.util.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -21,24 +18,31 @@ public class UserController {
 
     /**
      * 登录
+     *
      * @param user 用户信息
      * @return 结果
      */
     @PostMapping("/login")
-    public Map<String, Object> login(@RequestBody  User user) {
+    @CrossOrigin(origins = "http://localhost:8080")
+    public Map<String, Object> login(@RequestBody User user) {
 
         Map<String, Object> map = new HashMap<>();
 
         try {
             User userDB = userService.login(user);
-            Map<String, String> payload = new HashMap<>();
-            //用户登录成功后的信息放入payload
-            payload.put("carNumber", userDB.getCarNumber());
-            //生成JWT令牌
-            String token = JWTUtils.getToken(payload);
-            map.put("state", true);
-            map.put("token", token);
-            map.put("msg", "认证成功");
+            if (userDB != null) {
+                Map<String, String> payload = new HashMap<>();
+                //用户登录成功后的信息放入payload
+                payload.put("carNumber", user.getCarNumber());
+                //生成JWT令牌
+                String token = JWTUtils.getToken(payload);
+                map.put("state", true);
+                map.put("token", token);
+                map.put("msg", "认证成功");
+            } else {
+                map.put("state", false);
+                map.put("msg", "用户名或密码错误");
+            }
         } catch (Exception e) {
             map.put("state", false);
             map.put("msg", e.getMessage());
@@ -56,19 +60,26 @@ public class UserController {
 
     /**
      * 注册
+     *
      * @param newUser 用户信息
      * @return 结果
      */
     @PostMapping("/register")
-    public Map<String, Object> register(@RequestBody User newUser){
+    @CrossOrigin(origins = "http://localhost:8080")
+    public Map<String, Object> register(@RequestBody User newUser) {
         Map<String, Object> map = new HashMap<>();
+        if (userService.getUser(newUser.getCarNumber()) != null) {
+            map.put("state", false);
+            map.put("msg", "该车已注册");
+            return map;
+        }
 
         try {
-            User userDB = userService.register(newUser);
+            userService.register(newUser);
 
             map.put("state", true);
-            map.put("carNumber", userDB.getCarNumber());
-            map.put("password", userDB.getPassword());
+            map.put("carNumber", newUser.getCarNumber());
+            map.put("password", newUser.getPassword());
             map.put("msg", "注册成功");
         } catch (Exception e) {
             map.put("state", false);

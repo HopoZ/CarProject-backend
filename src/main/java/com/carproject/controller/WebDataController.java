@@ -7,7 +7,9 @@ import com.carproject.service.WebDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -42,9 +44,18 @@ public class WebDataController {
      * 注册车辆
      * @param carNumber 车牌号
      */
-    @PostMapping ("/registerCar ")
+    @PostMapping ("/registerCar")
     @CrossOrigin(origins = "http://localhost:8080")
-    public void registerCar(@RequestBody RegisterRequest carNumber) {
-        webDataService.registerCar(carNumber);
+    public Map<String, Object> registerCar(@RequestBody RegisterRequest carNumber) {
+        Map<String, Object> map = new HashMap<>();
+        try{
+            webDataService.registerCar(carNumber);
+            map.put("state", true);
+            map.put("msg", "注册成功");
+        }catch (Exception e) {
+            map.put("state", false);
+            map.put("msg", "注册失败：该车已注册");
+        }
+        return map;
     }
 }

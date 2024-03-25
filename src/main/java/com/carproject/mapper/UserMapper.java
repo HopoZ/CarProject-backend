@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserMapper {
-    User login(User user);
-    User register(User user);
+    User login(String carNumber, String password);
+    void register(User user);
+    User getUser(String carNumber);
 }

@@ -14,11 +14,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(User user) {
-        return userMapper.login(user);
+        return userMapper.login(user.getCarNumber(),user.getPassword());
     }
 
     @Override
-    public User register(User user) {
-        return userMapper.register(user);
+    public void register(User user) {
+        userMapper.register(user);
+    }
+
+    @Override
+    public User getUser(String carNumber) {
+        return userMapper.getUser(carNumber);
     }
 }

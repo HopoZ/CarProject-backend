@@ -19,7 +19,6 @@ public class WebDataServiceImpl implements WebDataService {
     @Override
     public DetailedCarData getDetailedData(String carNumber) {
         return webDataMapper.getDetailedData(carNumber);
-
     }
 
     @Override

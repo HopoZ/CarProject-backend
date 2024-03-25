@@ -11,7 +11,12 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(new JWTInterceptor())
                 //拦截
                 .addPathPatterns("/user/test")
+                .addPathPatterns("/web/registerCar ")
+                .addPathPatterns("/web/getCarDataList")
+                .addPathPatterns("/web/getDetailedData")
+                .addPathPatterns("/WCMP/getDetailedData")
                 //放行
-                .excludePathPatterns("/user/login");
+                .excludePathPatterns("/user/login")
+                .excludePathPatterns("/user/register");
     }
 }

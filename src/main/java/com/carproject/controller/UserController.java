@@ -19,6 +19,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 登录
+     * @param user 用户信息
+     * @return 结果
+     */
     @PostMapping("/login")
     public Map<String, Object> login(@RequestBody  User user) {
 
@@ -49,5 +54,27 @@ public class UserController {
         return map;
     }
 
+    /**
+     * 注册
+     * @param newUser 用户信息
+     * @return 结果
+     */
+    @PostMapping("/register")
+    public Map<String, Object> register(@RequestBody User newUser){
+        Map<String, Object> map = new HashMap<>();
+
+        try {
+            User userDB = userService.register(newUser);
+
+            map.put("state", true);
+            map.put("carNumber", userDB.getCarNumber());
+            map.put("password", userDB.getPassword());
+            map.put("msg", "注册成功");
+        } catch (Exception e) {
+            map.put("state", false);
+            map.put("msg", e.getMessage());
+        }
+        return map;
+    }
 
 }

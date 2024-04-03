@@ -57,7 +57,7 @@ public class WebDataController {
         return map;
     }
 
--
+
     @GetMapping("/delete")
     public Result deleteData(@RequestParam String carNumber) {
 //        try {

@@ -12,4 +12,5 @@ public interface WebDataMapper {
     DetailedCarData getDetailedData(String carNumber);
     List<CarDate> carDataList();
     void registerCar(RegisterRequest carNum);
+    void deleteData(String carNumber);
 }

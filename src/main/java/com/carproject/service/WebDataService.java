@@ -10,4 +10,5 @@ public interface WebDataService {
     DetailedCarData getDetailedData(String carNumber);
     List<CarDate> carDataList();
     void registerCar(RegisterRequest carNumber);
+    void deleteData(String carNumber);
 }

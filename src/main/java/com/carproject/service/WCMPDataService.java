@@ -4,4 +4,5 @@ import com.carproject.pojo.DetailedCarData;
 
 public interface WCMPDataService {
     DetailedCarData getDetailedData(String carNumber);
+
 }

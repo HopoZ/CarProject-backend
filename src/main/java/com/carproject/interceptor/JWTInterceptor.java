@@ -18,6 +18,7 @@ import java.util.Map;
 public class JWTInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
         Map<String, Object> map = new HashMap<>();
         // 获取请求头中的令牌
         String token = request.getHeader("token");

@@ -30,4 +30,9 @@ public class WebDataServiceImpl implements WebDataService {
     public void registerCar(RegisterRequest carNumber) {
         webDataMapper.registerCar(carNumber);
     }
+
+    @Override
+    public void deleteData(String carNumber) {
+        webDataMapper.deleteData(carNumber);
+    }
 }

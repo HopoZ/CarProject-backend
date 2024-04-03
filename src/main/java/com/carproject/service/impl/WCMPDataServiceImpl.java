@@ -15,4 +15,6 @@ public class WCMPDataServiceImpl implements WCMPDataService {
     public DetailedCarData getDetailedData(String carNumber) {
         return mapper.getDetailedData(carNumber);
     }
+
+
 }

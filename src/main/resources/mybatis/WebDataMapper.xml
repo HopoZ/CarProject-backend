@@ -5,6 +5,11 @@
         INSERT INTO safe_guard.law_data (car_number)
         VALUES (#{carNumber})
     </insert>
+    <delete id="deleteData">
+        DELETE
+        FROM safe_guard.law_data
+        WHERE car_number = #{carNumber}
+    </delete>
 
     <select id="getDetailedData" resultType="com.carproject.pojo.DetailedCarData">
         SELECT *

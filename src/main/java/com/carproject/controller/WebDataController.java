@@ -4,6 +4,7 @@ import com.carproject.pojo.CarDate;
 import com.carproject.pojo.DetailedCarData;
 import com.carproject.pojo.RegisterRequest;
 import com.carproject.service.WebDataService;
+import com.carproject.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,6 @@ public class WebDataController {
      * @return 车辆信息
      */
     @GetMapping ("/getDetailedData")
-    @CrossOrigin(origins = "http://localhost:8080")
     public DetailedCarData getDetailedData(@RequestParam String carNumber) {
         return webDataService.getDetailedData(carNumber);
     }
@@ -35,7 +35,6 @@ public class WebDataController {
      * @return 车辆信息
      */
     @GetMapping ("/carDataList")
-    @CrossOrigin(origins = "http://localhost:8080")
     public List<CarDate> getCarData() {
         return webDataService.carDataList();
     }
@@ -45,7 +44,6 @@ public class WebDataController {
      * @param carNumber 车牌号
      */
     @PostMapping ("/registerCar")
-    @CrossOrigin(origins = "http://localhost:8080")
     public Map<String, Object> registerCar(@RequestBody RegisterRequest carNumber) {
         Map<String, Object> map = new HashMap<>();
         try{
@@ -57,5 +55,16 @@ public class WebDataController {
             map.put("msg", "注册失败：该车已注册");
         }
         return map;
+    }
+
+-
+    @GetMapping("/delete")
+    public Result deleteData(@RequestParam String carNumber) {
+//        try {
+            webDataService.deleteData(carNumber);
+//        }catch (Exception e){
+//            return Result.error("err");
+//        }
+        return  Result.success();
     }
 }

@@ -22,5 +22,10 @@
         SELECT *
         FROM safe_guard.law_data
     </select>
+    <select id="getTemperatureLog" resultType="com.carproject.pojo.TemperatureLog">
+        SELECT *
+        FROM temperature_log
+        WHERE car_number = #{carNumber}
+    </select>
 
 </mapper>

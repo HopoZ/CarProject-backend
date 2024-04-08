@@ -4,6 +4,7 @@ import com.carproject.mapper.WebDataMapper;
 import com.carproject.pojo.CarDate;
 import com.carproject.pojo.DetailedCarData;
 import com.carproject.pojo.RegisterRequest;
+import com.carproject.pojo.TemperatureLog;
 import com.carproject.service.WebDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,10 @@ public class WebDataServiceImpl implements WebDataService {
     @Override
     public void deleteData(String carNumber) {
         webDataMapper.deleteData(carNumber);
+    }
+
+    @Override
+    public List<TemperatureLog> getTemperatureLog(String carNumber) {
+        return webDataMapper.getTemperatureLog(carNumber);
     }
 }

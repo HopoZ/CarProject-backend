@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class TemperatureLog {
-    Integer carNumber;
+    String carNumber;
     Float temperature;
     String datetime;
 }
